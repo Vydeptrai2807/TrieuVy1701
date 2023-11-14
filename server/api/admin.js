@@ -142,6 +142,11 @@ router.put('/customers/deactive/:id', JwtUtil.checkToken, async function (req, r
     const result = await CustomerDAO.active(_id, token, 0);
     res.json(result);
   });
+  // customer
+router.get('/customers', JwtUtil.checkToken, async function (req, res) {
+    const customers = await CustomerDAO.selectAll();
+    res.json(customers);
+  });
 // order
   router.get('/orders/customer/:cid', JwtUtil.checkToken, async function (req, res) {
     const _cid = req.params.cid;
